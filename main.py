@@ -35,9 +35,9 @@ def login():
     form = LoginForm()
     if form.validate_on_submit():
         flash(
-            f'Ha iniciado sesión el usuario {form.username.data}, recuerdame={form.remember_me.data}')
+            f'Login requested for user {form.username.data}, remember_me={form.remember_me.data}')
         return redirect(url_for('index'))
-    return render_template('login.html', title='Iniciar sesión', form=form)
+    return render_template('login.html', title='Sign in', form=form)
 
 
 if __name__ == '__main__':
