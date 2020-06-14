@@ -1,16 +1,7 @@
-from os import environ
+from flask import render_template, flash, redirect, url_for
 
-from flask import Flask, render_template, flash, redirect, url_for
-from flask_sqlalchemy import SQLAlchemy
-from flask_migrate import Migrate
-
-from config import Config
-from forms import LoginForm
-
-app = Flask(__name__)
-app.config.from_object(Config)
-db = SQLAlchemy(app)
-migrate = Migrate(app, db)
+from app import app, db
+from app.forms import LoginForm
 
 
 @app.route('/')
@@ -38,7 +29,3 @@ def login():
             f'Login requested for user {form.username.data}, remember_me={form.remember_me.data}')
         return redirect(url_for('index'))
     return render_template('login.html', title='Sign in', form=form)
-
-
-if __name__ == '__main__':
-    app.run(port=5001)

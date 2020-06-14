@@ -1,7 +1,7 @@
 from datetime import datetime
 from random import randint
 
-from main import db
+from app import db
 
 
 class User(db.Model):
@@ -19,10 +19,10 @@ class User(db.Model):
 class File(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     file_name = db.Column(db.String(60), index=True, unique=True)
-    upload_date = db.Column(db.Datetime, index=True, default=datetime.utcnow)
+    upload_date = db.Column(db.DateTime, index=True, default=datetime.utcnow)
     size = db.Column(db.Integer, default=randint(200, 900))
     hash_sha = db.Column(db.Integer, default=randint(200, 900))
-    user_id = db.Column(db.Integer, db.ForeigKey('user.id'))
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
 
     def __repr__(self):
         return f'<File {self.file_name}>'
