@@ -10,6 +10,7 @@ class User(db.Model):
     email = db.Column(db.String(120), index=True, unique=True)
     password_hash = db.Column(db.String(128))
     can_delete = db.Column(db.Boolean, default=False)
+    files = db.relationship('File', backref='author', lazy='dynamic')
 
     def __repr__(self):
         return f'<User {self.username}>'
@@ -21,6 +22,7 @@ class File(db.Model):
     upload_date = db.Column(db.Datetime, index=True, default=datetime.utcnow)
     size = db.Column(db.Integer, default=randint(200, 900))
     hash_sha = db.Column(db.Integer, default=randint(200, 900))
+    user_id = db.Column(db.Integer, db.ForeigKey('user.id'))
 
     def __repr__(self):
         return f'<File {self.file_name}>'
