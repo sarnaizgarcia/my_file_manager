@@ -1,5 +1,5 @@
 {% extends "base.html" %} {% block content %}
-<h1>Welcome, {{ user.username }}</h1>
+<h1>Welcome, {{ current_user.username }}</h1>
 {% for file in files %}
 <div>
   <p>{{ file.author.username }} is the author of {{ file.file_name }}</p>
