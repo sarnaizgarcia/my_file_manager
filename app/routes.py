@@ -21,7 +21,7 @@ def index():
             'file_name': 'file2'
         },
     ]
-    return render_template('index.html', title='Home', user=user, files=files)
+    return render_template('index.html', title='Home', files=files)
 
 
 @app.route('/login', methods=['GET', 'POST'])
