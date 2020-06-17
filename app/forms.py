@@ -1,6 +1,7 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, BooleanField, SubmitField
-from wtforms.validators import DataRequired, ValidationError, Email, EqualTo
+from flask_wtf.file import FileField, FileRequired, FileAllowed
+from wtforms import StringField, PasswordField, BooleanField, SubmitField, TextAreaField
+from wtforms.validators import DataRequired, ValidationError, Email, EqualTo, Length
 
 from app.models import User
 
@@ -29,3 +30,11 @@ class RegistrationForm(FlaskForm):
         user = User.query.filter_by(email=email.data).first()
         if user is not None:
             raise ValidationError('Please use a different email address.')
+
+
+class UploadForm(FlaskForm):
+    file_name = StringField('File name', validators=[DataRequired()])
+    description = TextAreaField('Field description', validators=[
+                                Length(min=0, max=140)])
+    file = FileField(validators=[FileRequired(),
+                                 FileAllowed(['jpg', 'png', 'pdf', 'txt', 'py', 'doc'])])
