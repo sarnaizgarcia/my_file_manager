@@ -34,7 +34,7 @@ class File(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     file_name = db.Column(db.String(60), index=True, unique=True)
     upload_date = db.Column(db.DateTime, index=True, default=datetime.utcnow)
-    size = db.Column(db.Integer, default=randint(200, 900))
+    size = db.Column(db.Integer)
     hash_sha = db.Column(db.Integer, default=randint(200, 900))
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     description = db.Column(db.String)
