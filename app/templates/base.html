@@ -6,6 +6,7 @@
     <div>
       File management system<br />
       <a href="{{ url_for('index') }}">Home</a>
+      <a href="{{ url_for('upload') }}">Upload file</a>
       {% if current_user.is_anonymous %}
       <a href="{{ url_for('login') }}">Login</a>
       {% else %}
