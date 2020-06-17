@@ -1,4 +1,5 @@
 import os
+from datetime import datetime
 
 from flask import render_template, flash, redirect, url_for, request
 from flask_login import current_user, login_user, logout_user, login_required
@@ -7,7 +8,7 @@ from werkzeug.utils import secure_filename
 
 from app import app, db
 from app.forms import LoginForm, RegistrationForm, UploadForm
-from app.models import User
+from app.models import User, File
 
 
 @app.route('/')
@@ -67,12 +68,21 @@ def register():
 
 
 @app.route('/upload', methods=['GET', 'POST'])
+@login_required
 def upload():
     form = UploadForm()
     if form.validate_on_submit():
         f = form.file.data
         filename = secure_filename(form.file_name.data)
-        f.save(os.path.join(os.path.abspath(
-            os.path.dirname(__file__)), 'files', filename))
+        file_path = os.path.join(os.path.abspath(
+            os.path.dirname(__file__)), 'files', filename)
+        f.save(file_path)
+        new_file = File(file_name=filename, upload_date=datetime.utcnow())
+        new_file.path = os.path.abspath(file_path)
+        new_file.size = os.path.getsize(file_path)
+        new_file.user_id = current_user.id
+        new_file.description = form.description.data
+        db.session.add(new_file)
+        db.session.commit()
         return redirect(url_for('index'))
     return render_template('upload.html', form=form)
