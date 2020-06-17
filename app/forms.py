@@ -38,3 +38,4 @@ class UploadForm(FlaskForm):
                                 Length(min=0, max=140)])
     file = FileField(validators=[FileRequired(),
                                  FileAllowed(['jpg', 'png', 'pdf', 'txt', 'py', 'doc'])])
+    submit = SubmitField('Upload')

@@ -72,6 +72,7 @@ def upload():
     if form.validate_on_submit():
         f = form.file.data
         filename = secure_filename(form.file_name.data)
-        f.save(os.path.join(app.instance_path, 'uploaded_files', filename))
+        f.save(os.path.join(os.path.abspath(
+            os.path.dirname(__file__)), 'files', filename))
         return redirect(url_for('index'))
     return render_template('upload.html', form=form)

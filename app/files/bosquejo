@@ -1,0 +1,5 @@
+import os
+
+a_path = os.path.abspath(os.path.dirname(__file__))
+print(a_path)
+

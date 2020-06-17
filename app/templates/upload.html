@@ -17,11 +17,11 @@
     {% endfor %}
   </p>
   <p>
-    {{ form.file.label }}<br />
     {{ form.file(size=20) }}<br />
     {% for error in form.file.errors %}
     <span style="color: red;">[{{ error }}]</span>
     {% endfor %}
   </p>
+  <p>{{ form.submit() }}</p>
 </form>
 {% endblock %}
