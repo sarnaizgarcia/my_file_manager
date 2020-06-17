@@ -37,6 +37,7 @@ class File(db.Model):
     size = db.Column(db.Integer, default=randint(200, 900))
     hash_sha = db.Column(db.Integer, default=randint(200, 900))
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    description = db.Column(db.String)
 
     def __repr__(self):
         return f'<File {self.file_name}>'
