@@ -1,9 +1,12 @@
+import os
+
 from flask import render_template, flash, redirect, url_for, request
 from flask_login import current_user, login_user, logout_user, login_required
 from werkzeug.urls import url_parse
+from werkzeug.utils import secure_filename
 
 from app import app, db
-from app.forms import LoginForm, RegistrationForm
+from app.forms import LoginForm, RegistrationForm, UploadForm
 from app.models import User
 
 
@@ -61,3 +64,14 @@ def register():
         flash('You are now registered.')
         return redirect(url_for('login'))
     return render_template('register.html', title='Register', form=form)
+
+
+@app.route('/upload', methods=['GET', 'POST'])
+def upload():
+    form = UploadForm()
+    if form.validate_on_submit():
+        f = form.file.data
+        filename = secure_filename(form.file_name.data)
+        f.save(os.path.join(app.instance_path, 'uploaded_files', filename))
+        return redirect(url_for('index'))
+    return render_template('upload.html', form=form)
