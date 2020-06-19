@@ -42,7 +42,7 @@ class File(db.Model):
     path = db.Column(db.String)
 
     def encrypt_string(self, file_name):
-        hash_sha = hashlib.sha256(text.encode()).hexdigest()
+        hash_sha = hashlib.sha256(file_name.encode()).hexdigest()
         return hash_sha
 
     def __repr__(self):

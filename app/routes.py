@@ -82,6 +82,7 @@ def upload():
         new_file.size = os.path.getsize(file_path)
         new_file.user_id = current_user.id
         new_file.description = form.description.data
+        new_file.hash_sha = new_file.encrypt_string(new_file.file_name)
         db.session.add(new_file)
         db.session.commit()
         flash(f'{filename} was successfully uploaded!!')
