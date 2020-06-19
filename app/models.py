@@ -1,3 +1,4 @@
+import hashlib
 from datetime import datetime
 from random import randint
 
@@ -39,6 +40,10 @@ class File(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     description = db.Column(db.String)
     path = db.Column(db.String)
+
+    def encrypt_string(self, file_name):
+        hash_sha = hashlib.sha256(text.encode()).hexdigest()
+        return hash_sha
 
     def __repr__(self):
         return f'<File {self.file_name}>'
