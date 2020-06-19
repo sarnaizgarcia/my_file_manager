@@ -67,6 +67,7 @@ def upload():
         filename = secure_filename(form.file_name.data)
         file = File.query.filter_by(file_name=filename).first()
         if file in File.query.all():
+            flash('Ya existe un archivo con ese nombre.')
             return render_template('500.html'), 500
         file_path = os.path.join(os.path.abspath(
             os.path.dirname(__file__)), 'files', filename)
