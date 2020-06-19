@@ -1,7 +1,27 @@
 {% extends "base.html" %} {% block content %}
 <h1>Welcome, {{ current_user.username }}</h1>
-{% for file in files %}
-<div>
-  <p>{{ file.author.username }} is the author of {{ file.file_name }}</p>
-</div>
-{% endfor %} {% endblock %}
+<table>
+  <tr>
+    <th>File name</th>
+    <th>Upload date</th>
+    <th>Size (in bytes)</th>
+    <th>Hash</th>
+    <th>Download</th>
+    {% if current_user.can_delete %}
+    <th>Delete</th>
+    {% endif %}
+  </tr>
+  {% for file in files %}
+  <tr>
+    <td>{{ file.file_name }}</td>
+    <td>{{ file.upload_date }}</td>
+    <td>{{ file.size }}</td>
+    <td>{{ file.hash_sha }}</td>
+    <td>Ya veremos</td>
+    {% if current_user.can_delete %}
+    <td>Ya veremos</td>
+    {% endif %}
+  </tr>
+  {% endfor %}
+</table>
+{% endblock %}

@@ -15,16 +15,7 @@ from app.models import User, File
 @app.route('/index')
 @login_required
 def index():
-    files = [
-        {
-            'author': {'username': 'Silvia'},
-            'file_name': 'file1'
-        },
-        {
-            'author': {'username': 'Roberto'},
-            'file_name': 'file2'
-        },
-    ]
+    files = File.query.all()
     return render_template('index.html', title='Home', files=files)
 
 
