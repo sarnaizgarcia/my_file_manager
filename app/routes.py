@@ -84,5 +84,6 @@ def upload():
         new_file.description = form.description.data
         db.session.add(new_file)
         db.session.commit()
+        flash(f'{filename} was successfully uploaded!!')
         return redirect(url_for('index'))
     return render_template('upload.html', form=form)
