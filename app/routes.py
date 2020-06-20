@@ -15,8 +15,15 @@ from app.models import User, File
 @app.route('/index')
 @login_required
 def index():
-    files = File.query.all()
-    return render_template('index.html', title='Home', files=files)
+    page = request.args.get('page', 1, type=int)
+    files = current_user.files.paginate(
+        page, app.config['POSTS_PER_PAGE'], False)
+    next_url = url_for(
+        'index', page=files.next_num) if files.has_next else None
+    prev_url = url_for(
+        'index', page=files.prev_num) if files.has_prev else None
+    return render_template('index.html', title='Home', files=files.items,
+                           next_url=next_url, prev_url=prev_url)
 
 
 @app.route('/login', methods=['GET', 'POST'])

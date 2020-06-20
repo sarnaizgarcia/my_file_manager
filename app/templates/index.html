@@ -24,4 +24,8 @@
   </tr>
   {% endfor %}
 </table>
-{% endblock %}
+{% if prev_url %}
+<a href="{{ prev_url }}">Previous files</a>
+{% endif %} {% if next_url %}
+<a href="{{ next_url }}">Next files</a>
+{% endif %} {% endblock %}
