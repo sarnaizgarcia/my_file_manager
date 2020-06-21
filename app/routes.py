@@ -1,7 +1,7 @@
 import os
 from datetime import datetime
 
-from flask import render_template, flash, redirect, url_for, request
+from flask import render_template, flash, redirect, url_for, request, send_file, Response
 from flask_login import current_user, login_user, logout_user, login_required
 from werkzeug.urls import url_parse
 from werkzeug.utils import secure_filename
@@ -90,3 +90,14 @@ def upload():
         flash(f'{filename} was successfully uploaded!!')
         return redirect(url_for('index'))
     return render_template('upload.html', form=form)
+
+
+@app.route('/download/<filename>')
+def download_file(filename):
+    full_path = os.path.join(app.root_path,
+                             app.config['UPLOAD_FOLDER'], filename)
+    file = open(full_path, 'r')
+    content = file.read()
+    response = Response(content)
+    response.headers['Content-Type'] = 'application/octet-stream'
+    return response

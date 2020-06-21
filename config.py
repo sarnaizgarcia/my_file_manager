@@ -9,3 +9,4 @@ class Config:
         'DATABASE_URL') or 'sqlite:///' + os.path.join(basedir, 'app.db')
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     POSTS_PER_PAGE = 1
+    UPLOAD_FOLDER = 'files'

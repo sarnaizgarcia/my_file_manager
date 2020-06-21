@@ -17,7 +17,11 @@
     <td>{{ file.upload_date }}</td>
     <td>{{ file.size }}</td>
     <td>{{ file.hash_sha }}</td>
-    <td>Ya veremos</td>
+    <td>
+      <a href="{{ url_for('download_file', filename=file.file_name) }}"
+        ><button>Download</button></a
+      >
+    </td>
     {% if current_user.can_delete %}
     <td>Ya veremos</td>
     {% endif %}
