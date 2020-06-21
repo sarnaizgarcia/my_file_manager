@@ -93,7 +93,22 @@ def upload():
 
 
 @app.route('/download/<filename>')
+@login_required
 def download_file(filename):
     full_path = os.path.join(
         app.config['ROOT_PATH'], app.config['UPLOAD_FOLDER'])
     return send_from_directory(full_path, filename, as_attachment=True)
+
+
+@app.route('/delete/<filename>', methods=['GET', 'POST'])
+@login_required
+def delete_file(filename):
+    file = File.query.filter_by(file_name=filename).first()
+    full_path = os.path.join(
+        app.config['ROOT_PATH'], app.config['UPLOAD_FOLDER'], file.file_name)
+    os.remove(full_path)
+
+    db.session.delete(file)
+    db.session.commit()
+    flash(f'File {file.file_name} has been removed')
+    return redirect(url_for('index'))
