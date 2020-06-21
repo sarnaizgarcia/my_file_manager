@@ -1,7 +1,7 @@
 import os
 from datetime import datetime
 
-from flask import render_template, flash, redirect, url_for, request
+from flask import render_template, flash, redirect, url_for, request, send_from_directory
 from flask_login import current_user, login_user, logout_user, login_required
 from werkzeug.urls import url_parse
 from werkzeug.utils import secure_filename
@@ -76,8 +76,8 @@ def upload():
         if file in File.query.all():
             flash('Ya existe un archivo con ese nombre.')
             return render_template('500.html'), 500
-        file_path = os.path.join(os.path.abspath(
-            os.path.dirname(__file__)), 'files', filename)
+        file_path = os.path.join(
+            app.config['ROOT_PATH'], app.config['UPLOAD_FOLDER'], filename)
         f.save(file_path)
         new_file = File(file_name=filename, upload_date=datetime.utcnow())
         new_file.path = os.path.abspath(file_path)
@@ -90,3 +90,10 @@ def upload():
         flash(f'{filename} was successfully uploaded!!')
         return redirect(url_for('index'))
     return render_template('upload.html', form=form)
+
+
+@app.route('/download/<filename>')
+def download_file(filename):
+    full_path = os.path.join(
+        app.config['ROOT_PATH'], app.config['UPLOAD_FOLDER'])
+    return send_from_directory(full_path, filename, as_attachment=True)
