@@ -1,5 +1,6 @@
 {% extends "base.html" %} {% block content %}
 <h1>Welcome, {{ current_user.username }}</h1>
+{% if file in current_user.files %}
 <table>
   <tr>
     <th>File name</th>
@@ -36,4 +37,8 @@
 <a href="{{ prev_url }}">Previous files</a>
 {% endif %} {% if next_url %}
 <a href="{{ next_url }}">Next files</a>
+{% endif %} {% else %}
+<p>
+  You have no files yet. Upload files <a href="{{ url_for('upload') }}">here</a>
+</p>
 {% endif %} {% endblock %}
