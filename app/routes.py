@@ -16,7 +16,7 @@ from app.models import User, File
 @login_required
 def index():
     page = request.args.get('page', 1, type=int)
-    files = current_user.files.paginate(
+    files = File.query.order_by(File.upload_date.desc()).paginate(
         page, app.config['POSTS_PER_PAGE'], False)
     next_url = url_for(
         'index', page=files.next_num) if files.has_next else None

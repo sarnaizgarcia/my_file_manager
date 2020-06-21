@@ -8,6 +8,6 @@ class Config:
     SQLALCHEMY_DATABASE_URI = os.environ.get(
         'DATABASE_URL') or 'sqlite:///' + os.path.join(basedir, 'app.db')
     SQLALCHEMY_TRACK_MODIFICATIONS = False
-    POSTS_PER_PAGE = 1
+    POSTS_PER_PAGE = 8
     UPLOAD_FOLDER = 'app/files'
     ROOT_PATH = basedir
