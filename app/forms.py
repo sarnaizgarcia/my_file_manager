@@ -3,6 +3,7 @@ from flask_wtf.file import FileField, FileRequired, FileAllowed
 from wtforms import StringField, PasswordField, BooleanField, SubmitField, TextAreaField
 from wtforms.validators import DataRequired, ValidationError, Email, EqualTo, Length
 
+from app.app import app
 from app.models import User
 
 
@@ -37,5 +38,5 @@ class UploadForm(FlaskForm):
     description = TextAreaField('Field description', validators=[
                                 Length(min=0, max=140)])
     file = FileField(validators=[FileRequired(),
-                                 FileAllowed(['jpg', 'png', 'pdf', 'txt', 'py', 'doc'])])
+                                 FileAllowed(app.config['ALLOWED_EXTENSIONS'])])
     submit = SubmitField('Upload')

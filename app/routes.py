@@ -1,4 +1,5 @@
 import os
+import sys
 from datetime import datetime
 
 from flask import render_template, flash, redirect, url_for, request, send_from_directory
@@ -71,15 +72,18 @@ def upload():
     form = UploadForm()
     if form.validate_on_submit():
         f = form.file.data
-        filename = secure_filename(form.file_name.data)
-        file = File.query.filter_by(file_name=filename).first()
+        file_name = f.filename
+        file_name = secure_filename(f.filename)  # Real filename
+        file = File.query.filter_by(file_name=file_name).first()
         if file in File.query.all():
             flash('Ya existe un archivo con ese nombre.')
             return render_template('500.html'), 500
-        file_path = os.path.join(
-            app.config['ROOT_PATH'], app.config['UPLOAD_FOLDER'], filename)
+        upload_folder = app.config['UPLOAD_FOLDER']
+        if os.path.isdir(upload_folder) == False:
+            os.makedirs(upload_folder)
+        file_path = os.path.join(upload_folder, file_name)  # filename
         f.save(file_path)
-        new_file = File(file_name=filename, upload_date=datetime.utcnow())
+        new_file = File(file_name=file_name, upload_date=datetime.utcnow())
         new_file.path = os.path.abspath(file_path)
         new_file.size = os.path.getsize(file_path)
         new_file.user_id = current_user.id
@@ -87,7 +91,7 @@ def upload():
         new_file.hash_sha = new_file.encrypt_string(new_file.file_name)
         db.session.add(new_file)
         db.session.commit()
-        flash(f'{filename} was successfully uploaded!!')
+        flash(f'{file_name} was successfully uploaded!!')
         return redirect(url_for('index'))
     return render_template('upload.html', form=form)
 
