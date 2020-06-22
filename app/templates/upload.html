@@ -3,13 +3,6 @@
 <form action="" method="POST" novalidate enctype="multipart/form-data">
   {{ form.hidden_tag() }}
   <p>
-    {{ form.file_name.label }}<br />
-    {{ form.file_name(size=32) }}<br />
-    {% for error in form.file_name.errors %}
-    <span style="color: red;">[{{ error }}]</span>
-    {% endfor %}
-  </p>
-  <p>
     {{ form.description.label }}<br />
     {{ form.description(size=32) }}<br />
     {% for error in form.description.errors %}

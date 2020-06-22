@@ -34,8 +34,8 @@ class RegistrationForm(FlaskForm):
 
 
 class UploadForm(FlaskForm):
-    file_name = StringField('File name', validators=[DataRequired()])
-    description = TextAreaField('Field description', validators=[
+    #file_name = StringField('File name', validators=[DataRequired()])
+    description = TextAreaField('Description', validators=[
                                 Length(min=0, max=140)])
     file = FileField(validators=[FileRequired(),
                                  FileAllowed(app.config['ALLOWED_EXTENSIONS'])])
