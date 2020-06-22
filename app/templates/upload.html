@@ -2,6 +2,7 @@
 <h1>Upload file</h1>
 <form action="" method="POST" novalidate enctype="multipart/form-data">
   {{ form.hidden_tag() }}
+
   <p>
     {{ form.description.label }}<br />
     {{ form.description(size=32) }}<br />

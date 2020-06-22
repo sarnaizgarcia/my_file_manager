@@ -1,0 +1,91 @@
+.form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px;
+}
+
+.content {
+  width: 500px;
+  background-color: var(--primary-color);
+  color: var(--font-color-on-primary);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 4px;
+  padding: 0px 10px 20px 10px;
+}
+
+.field {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  margin-bottom: 10px;
+}
+
+label {
+  font-size: var(--font-size-normal);
+  font-weight: var(--font-weight-normal);
+  margin-bottom: 5px;
+}
+
+.field input {
+  font-size: var(--font-size-normal);
+  background-color: var(--surface-color);
+  color: var(--font-color-on-surface);
+  width: 100%;
+  height: 30px;
+  border-radius: 4px;
+}
+
+.error {
+  font-size: var(--font-size-small);
+  color: var(--error-color);
+}
+
+.check {
+  margin-bottom: 10px;
+}
+
+.button input {
+  font-size: var(--font-size-small);
+  height: 35px;
+  width: 95px;
+  background-color: var(--secondary-color);
+  border-radius: 4px;
+  cursor: pointer;
+  color: var(--font-color-on-secondary);
+  font-weight: var(--font-weight-important);
+}
+
+.button input:hover {
+  transform: scale(1.2);
+}
+
+.button.disable input {
+  background-color: var(--secondary-color-dark);
+  cursor: no-drop;
+}
+
+.button.disable input:hover {
+  transform: scale(0.8);
+}
+
+.new-user {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  height: 30px;
+  width: 95%;
+  border-top: solid 3px var(--font-color-on-primary);
+}
+
+.new-user a {
+  color: inherit;
+  margin-left: 5px;
+}

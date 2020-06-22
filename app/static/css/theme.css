@@ -1,0 +1,27 @@
+:root {
+  --primary-color: #6200ee;
+  --primary-color-dark: #3700b3;
+  --secondary-color: #03dac6;
+  --secondary-color-dark: #018786;
+  --background-color: #ffffff;
+  --surface-color: #ffffff;
+  --error-color: #c51162;
+  --font-color-on-primary: #ffffff;
+  --font-color-on-secondary: #000000;
+  --font-color-on-background: #000000;
+  --font-color-on-surface: #000000;
+  --font-color-on-error: #ffffff;
+  --font-size-small: 12px;
+  --font-size-normal: 20px;
+  --font-size-big: 36px;
+  --font-size-huge: 46px;
+  --font-weight-not-important: 300;
+  --font-weight-normal: 400;
+  --font-weight-important: bold;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  margin: 0px;
+}

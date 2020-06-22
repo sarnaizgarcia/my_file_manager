@@ -1,25 +1,61 @@
 <html>
   <head>
     <title>File management</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <link
+      href="{{ url_for('static', filename='css/theme.css') }}"
+      rel="stylesheet"
+    />
+    <link
+      href="{{ url_for('static', filename='css/header.css') }}"
+      rel="stylesheet"
+    />
+    <link
+      href="{{ url_for('static', filename='css/message.css') }}"
+      rel="stylesheet"
+    />
   </head>
   <body>
-    <div>
-      File management system<br />
-      <a href="{{ url_for('index') }}">Home</a>
-      <a href="{{ url_for('upload') }}">Upload file</a>
-      {% if current_user.is_anonymous %}
-      <a href="{{ url_for('login') }}">Login</a>
-      {% else %}
-      <a href="{{ url_for('logout') }}">Logout</a>
-      {% endif %}
+    <div class="header">
+      <span class="title">File management system</span>
+      <span class="icons">
+        <a class="icon" href="{{ url_for('index') }}">
+          <span class="material-icons">home</span>
+        </a>
+        <a class="icon" href="{{ url_for('upload') }}">
+          <span class="material-icons">backup</span>
+        </a>
+        {% if current_user.is_anonymous %}
+        <a class="icon" href="{{ url_for('login') }}">
+          <span class="material-icons">login</span>
+        </a>
+        {% else %}
+        <a class="icon" href="{{ url_for('logout') }}">
+          <span class="material-icons">clear</span>
+        </a>
+        {% endif %}
+      </span>
     </div>
-    <hr />
     {% with messages = get_flashed_messages() %} {% if messages %}
-    <ul>
-      {% for message in messages %}
-      <li>{{ message }}</li>
-      {% endfor %}
-    </ul>
+    <div class="messages">
+      <div class="header">
+        <span class="icon material-icons">notification_important</span>
+        <span class="title">Atention</span>
+        <span class="close material-icons">highlight_off</span>
+      </div>
+      <ul class="list">
+        {% for message in messages %}
+        <li class="message">{{ message }}</li>
+        {% endfor %}
+      </ul>
+    </div>
     {% endif %} {% endwith %} {% block content %}{% endblock %}
   </body>
 </html>
