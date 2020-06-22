@@ -1,5 +1,5 @@
 {% extends "base.html" %} {% block content %}
-<h1>Welcome, {{ current_user.username }}</h1>
+<h1>Hello, {{ current_user.username }}</h1>
 <table>
   <tr>
     <th>File name</th>
@@ -14,7 +14,7 @@
   {% for file in files %}
   <tr>
     <td>{{ file.file_name }}</td>
-    <td>{{ file.upload_date }}</td>
+    <td>{{ file.upload_date.strftime('%d-%m-%Y') }}</td>
     <td>{{ file.size }}</td>
     <td>{{ file.hash_sha }}</td>
     <td>
@@ -33,7 +33,7 @@
   {% endfor %}
 </table>
 {% if prev_url %}
-<a href="{{ prev_url }}">Previous files</a>
+<a href="{{ prev_url }}">Older files</a>
 {% endif %} {% if next_url %}
-<a href="{{ next_url }}">Next files</a>
+<a href="{{ next_url }}">Newer files</a>
 {% endif %} {% endblock %}
