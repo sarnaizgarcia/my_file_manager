@@ -1,21 +1,26 @@
 {% extends "base.html" %} {% block content %}
-<h1>Upload file</h1>
-<form action="" method="POST" novalidate enctype="multipart/form-data">
-  {{ form.hidden_tag() }}
-
-  <p>
-    {{ form.description.label }}<br />
-    {{ form.description(size=32) }}<br />
-    {% for error in form.description.errors %}
-    <span style="color: red;">[{{ error }}]</span>
-    {% endfor %}
-  </p>
-  <p>
-    {{ form.file(size=20) }}<br />
-    {% for error in form.file.errors %}
-    <span style="color: red;">[{{ error }}]</span>
-    {% endfor %}
-  </p>
-  <p>{{ form.submit() }}</p>
-</form>
-{% endblock %}
+<link
+  href="{{ url_for('static', filename='css/form.css') }}"
+  rel="stylesheet"
+/>
+<div class="form">
+  <div class="content">
+    <h1 class="title">Upload file</h1>
+    <form action="" method="POST" novalidate enctype="multipart/form-data">
+      {{ form.hidden_tag() }}
+      <div class="field">
+        {{ form.description.label }} {{ form.description(size=32) }} {% for
+        error in form.description.errors %}
+        <span class="error">[{{ error }}]</span>
+        {% endfor %}
+      </div>
+      <div>
+        {{ form.file(size=20) }} {% for error in form.file.errors %}
+        <span class="error">[{{ error }}]</span>
+        {% endfor %}
+      </div>
+      <div class="button">{{ form.submit() }}</div>
+    </form>
+  </div>
+  {% endblock %}
+</div>
