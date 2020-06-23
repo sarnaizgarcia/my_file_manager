@@ -11,25 +11,28 @@
   margin: 0 auto;
 }
 
-.th,
-.td {
+.head_cell,
+.cell {
   padding: 15px;
   text-align: center;
 }
 
-.th {
+.head_cell {
   font-size: var(--font-size-normal);
   border-bottom: 3px solid var(--primary-color);
 }
 
-.td {
+.cell {
   border-bottom: 1px solid var(--primary-color);
 }
 
 tr:hover {
   background-color: #ddd;
 }
-/* 
-https://www.w3schools.com/css/css_table.asp
-https://www.w3schools.com/css/css3_flexbox.asp
-*/
+
+.table_icon {
+  color: inherit;
+  text-decoration: inherit;
+  margin: 50%;
+  cursor: pointer;
+}

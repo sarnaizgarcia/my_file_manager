@@ -3,32 +3,37 @@
   href="{{ url_for('static', filename='css/table.css') }}"
   rel="stylesheet"
 />
+<link
+  href="https://fonts.googleapis.com/icon?family=Material+Icons"
+  rel="stylesheet"
+/>
+
 <h1 class="title">Hello, {{ current_user.username }}</h1>
 <div style="overflow-x: auto;">
   <table class="table">
     <tr>
-      <th class="th">File name</th>
-      <th class="th">Upload date</th>
-      <th class="th">Size (in bytes)</th>
-      <th class="th">Hash</th>
-      <th class="th">Download</th>
+      <th class="head_cell">File name</th>
+      <th class="head_cell">Upload date</th>
+      <th class="head_cell">Size (in bytes)</th>
+      <th class="head_cell">Hash</th>
+      <th class="head_cell">Download</th>
       {% if current_user.can_delete %}
-      <th class="th">Delete</th>
+      <th class="head_cell">Delete</th>
       {% endif %}
     </tr>
     {% for file in files %}
     <tr>
-      <td class="td">{{ file.file_name }}</td>
-      <td class="td">{{ file.upload_date.strftime('%d-%m-%Y') }}</td>
-      <td class="td">{{ file.size }}</td>
-      <td class="td">{{ file.hash_sha }}</td>
-      <td class="td">
+      <td class="cell">{{ file.file_name }}</td>
+      <td class="cell">{{ file.upload_date.strftime('%d-%m-%Y') }}</td>
+      <td class="cell">{{ file.size }}</td>
+      <td class="cell">{{ file.hash_sha }}</td>
+      <td class="cell">
         <a href="{{ url_for('download_file', filename=file.file_name) }}"
           ><button>Download</button></a
         >
       </td>
       {% if current_user.can_delete %}
-      <td class="td">
+      <td class="cell">
         <a href="{{ url_for('delete_file', filename=file.file_name) }}"
           ><button>Delete</button></a
         >
@@ -40,10 +45,18 @@
 </div>
 {% if prev_url %}
 <div>
-  <a href="{{ prev_url }}">Older files</a>
+  <span class="icons">
+    <a class="table_icon" href="{{ prev_url }}">
+      <span class="material-icons">arrow_right</span></a
+    >
+  </span>
 </div>
 {% endif %} {% if next_url %}
 <div>
-  <a href="{{ next_url }}">Newer files</a>
+  <span class="icons">
+    <a class="table_icon" href="{{ next_url }}">
+      <span class="material-icons">arrow_left</span></a
+    >
+  </span>
 </div>
 {% endif %} {% endblock %}
