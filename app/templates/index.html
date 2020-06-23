@@ -1,39 +1,49 @@
 {% extends "base.html" %} {% block content %}
-<h1>Hello, {{ current_user.username }}</h1>
-<table>
-  <tr>
-    <th>File name</th>
-    <th>Upload date</th>
-    <th>Size (in bytes)</th>
-    <th>Hash</th>
-    <th>Download</th>
-    {% if current_user.can_delete %}
-    <th>Delete</th>
-    {% endif %}
-  </tr>
-  {% for file in files %}
-  <tr>
-    <td>{{ file.file_name }}</td>
-    <td>{{ file.upload_date.strftime('%d-%m-%Y') }}</td>
-    <td>{{ file.size }}</td>
-    <td>{{ file.hash_sha }}</td>
-    <td>
-      <a href="{{ url_for('download_file', filename=file.file_name) }}"
-        ><button>Download</button></a
-      >
-    </td>
-    {% if current_user.can_delete %}
-    <td>
-      <a href="{{ url_for('delete_file', filename=file.file_name) }}"
-        ><button>Delete</button></a
-      >
-    </td>
-    {% endif %}
-  </tr>
-  {% endfor %}
-</table>
+<link
+  href="{{ url_for('static', filename='css/table.css') }}"
+  rel="stylesheet"
+/>
+<h1 class="title">Hello, {{ current_user.username }}</h1>
+<div style="overflow-x: auto;">
+  <table class="table">
+    <tr>
+      <th class="th">File name</th>
+      <th class="th">Upload date</th>
+      <th class="th">Size (in bytes)</th>
+      <th class="th">Hash</th>
+      <th class="th">Download</th>
+      {% if current_user.can_delete %}
+      <th class="th">Delete</th>
+      {% endif %}
+    </tr>
+    {% for file in files %}
+    <tr>
+      <td class="td">{{ file.file_name }}</td>
+      <td class="td">{{ file.upload_date.strftime('%d-%m-%Y') }}</td>
+      <td class="td">{{ file.size }}</td>
+      <td class="td">{{ file.hash_sha }}</td>
+      <td class="td">
+        <a href="{{ url_for('download_file', filename=file.file_name) }}"
+          ><button>Download</button></a
+        >
+      </td>
+      {% if current_user.can_delete %}
+      <td class="td">
+        <a href="{{ url_for('delete_file', filename=file.file_name) }}"
+          ><button>Delete</button></a
+        >
+      </td>
+      {% endif %}
+    </tr>
+    {% endfor %}
+  </table>
+</div>
 {% if prev_url %}
-<a href="{{ prev_url }}">Older files</a>
+<div>
+  <a href="{{ prev_url }}">Older files</a>
+</div>
 {% endif %} {% if next_url %}
-<a href="{{ next_url }}">Newer files</a>
+<div>
+  <a href="{{ next_url }}">Newer files</a>
+</div>
 {% endif %} {% endblock %}
