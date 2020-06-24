@@ -8,17 +8,17 @@ from app.models import User
 
 
 class LoginForm(FlaskForm):
-    username = StringField('Username', validators=[DataRequired()])
-    password = PasswordField('Password', validators=[DataRequired()])
+    username = StringField('Username*', validators=[DataRequired()])
+    password = PasswordField('Password*', validators=[DataRequired()])
     remember_me = BooleanField('Remember me')
     submit = SubmitField('Iniciar sesión')
 
 
 class RegistrationForm(FlaskForm):
-    username = StringField('Username', validators=[DataRequired()])
-    email = StringField('Email', validators=[DataRequired(), Email()])
-    password = PasswordField('Password', validators=[DataRequired()])
-    password2 = PasswordField('Repeat password', validators=[
+    username = StringField('Username*', validators=[DataRequired()])
+    email = StringField('Email*', validators=[DataRequired(), Email()])
+    password = PasswordField('Password*', validators=[DataRequired()])
+    password2 = PasswordField('Repeat password*', validators=[
                               DataRequired(), EqualTo('password')])
     submit = SubmitField('Register')
 
@@ -35,7 +35,7 @@ class RegistrationForm(FlaskForm):
 
 class UploadForm(FlaskForm):
     #file_name = StringField('File name', validators=[DataRequired()])
-    description = TextAreaField('Description', validators=[
+    description = TextAreaField('Description*', validators=[
                                 Length(min=0, max=140)])
     file = FileField(validators=[FileRequired(),
                                  FileAllowed(app.config['ALLOWED_EXTENSIONS'])])
