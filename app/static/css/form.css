@@ -4,7 +4,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-top: 30px;
+  margin-top: 110px;
 }
 
 .content {
@@ -41,6 +41,15 @@ label {
   width: 100%;
   height: 30px;
   border-radius: 4px;
+}
+
+.field textarea {
+  font-size: var(--font-size-small);
+  background-color: var(--surface-color);
+  color: var(--font-color-on-surface);
+  width: 300px;
+  height: 150px;
+  margin-bottom: 20px;
 }
 
 .error {
@@ -88,4 +97,16 @@ label {
 .new-user a {
   color: inherit;
   margin-left: 5px;
+}
+
+.file-upload {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 10px;
+}
+
+.file-element {
+  margin-bottom: 10px;
 }
