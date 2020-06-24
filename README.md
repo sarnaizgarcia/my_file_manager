@@ -26,8 +26,6 @@ $ pip install -r requirements.txt
 $ python main.py
 ```
 
-Se abrirá la aplicación en
-
 ## Descripción de la aplicación
 
 Al inicio se muestra una pantalla de login. Se puede acceder con uno de los usuarios ya creados o registrando un usuario nuevo en el formulario de registro.
@@ -46,6 +44,4 @@ Una vez se ha accedido a la aplicación con usuario y contraseña, aparece una t
 Se pueden cargar más archivos con el formulario de upload.
 Está configurado para aceptar archivos con las siguientes extensiones: '.jpg', '.png', '.pdf', '.txt', '.py' y '.doc'.
 
-Hay dos tipos de usuarios: los que pueden eliminar archivos y los que no.
-
-Tienen permiso para eliminar archivos Silvia y Adrian. El resto sólo los puede descargar. No se pueden duplicar nombres de ficheros.
+Hay dos tipos de usuarios: los que pueden eliminar archivos y los que no. Tienen permiso para eliminar archivos Silvia y Adrian. El resto sólo los puede descargar. No se pueden duplicar nombres de ficheros.
