@@ -9,13 +9,13 @@
     <form action="" method="POST" novalidate>
       {{ form.hidden_tag() }}
       <div class="field">
-        {{ form.username.label }}* {{ form.username(size=32) }} {% for error in
+        {{ form.username.label }} {{ form.username(size=32) }} {% for error in
         form.username.errors %}
         <span class="error">[{{ error }}]</span>
         {% endfor %}
       </div>
       <div class="field">
-        {{ form.password.label }}* {{ form.password(size=32) }} {% for error in
+        {{ form.password.label }} {{ form.password(size=32) }} {% for error in
         form.password.errors %}
         <span class="error">[{{ error }}]</span>
         {% endfor %}
@@ -23,11 +23,12 @@
       <div class="check">
         {{ form.remember_me() }} {{ form.remember_me.label }}
       </div>
-      <div class="button">{{ form.submit() }}</div>
+      <div class="button disable">{{ form.submit() }}</div>
     </form>
     <div class="new-user">
       New user? <a href="{{ url_for('register') }}">Click to register!</a>
     </div>
   </div>
 </div>
+<script src="{{ url_for('static', filename='js/form-script.js')}}"></script>
 {% endblock %}
