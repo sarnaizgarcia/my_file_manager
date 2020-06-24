@@ -12,7 +12,10 @@ class Config:
     POSTS_PER_PAGE = 8
     ROOT_PATH = basedir
     ALLOWED_EXTENSIONS = ['jpg', 'png', 'pdf', 'txt', 'py', 'doc']
-    if platform.system() == 'Linux':
-        UPLOAD_FOLDER = 'opt/SGDF'
-    if platform.system() == 'Windows':
-        UPLOAD_FOLDER = 'C:\SGDF'
+    if os.environ.get('UPLOAD_FOLDER') != None:
+        UPLOAD_FOLDER = os.environ.get('UPLOAD_FOLDER')
+    else:
+        if platform.system() == 'Linux':
+            UPLOAD_FOLDER = 'opt/SGDF'
+        if platform.system() == 'Windows':
+            UPLOAD_FOLDER = 'C:\SGDF'
