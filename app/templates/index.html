@@ -9,6 +9,7 @@
 />
 
 <h1 class="title">Hello, {{ current_user.username }}</h1>
+<div class="container">
 <div style="overflow-x: auto;">
   <table class="table">
     <tr>
@@ -52,20 +53,19 @@
     {% endfor %}
   </table>
 </div>
-{% if prev_url %}
+{% if next_url %}
 <div>
   <span class="icons">
-    <a class="table_icon" href="{{ prev_url }}">
+    <a class="pagination" href="{{ next_url }}">
+      <span class="material-icons">arrow_left</span></a
+    >
+  </span>
+{% endif %} {% if prev_url %}
+  <span class="icons">
+    <a class="pagination" href="{{ prev_url }}">
       <span class="material-icons">arrow_right</span></a
     >
   </span>
 </div>
-{% endif %} {% if next_url %}
-<div>
-  <span class="icons">
-    <a class="table_icon" href="{{ next_url }}">
-      <span class="material-icons">arrow_left</span></a
-    >
-  </span>
 </div>
 {% endif %} {% endblock %}
