@@ -36,3 +36,8 @@ tr:hover {
   margin: 50%;
   cursor: pointer;
 }
+
+.button_icon {
+  color: var(--primary-color-dark);
+  cursor: pointer;
+}

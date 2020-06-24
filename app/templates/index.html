@@ -27,17 +27,26 @@
       <td class="cell">{{ file.upload_date.strftime('%d-%m-%Y') }}</td>
       <td class="cell">{{ file.size }}</td>
       <td class="cell">{{ file.hash_sha }}</td>
+      <div>
       <td class="cell">
-        <a href="{{ url_for('download_file', filename=file.file_name) }}"
-          ><button>Download</button></a
-        >
+        <span class="icons">
+        <a class="button_icon" href="{{ url_for('download_file', filename=file.file_name) }}"
+          ><span class="material-icons">cloud_download
+          </span></a
+        ></span>
       </td>
+    </div>
       {% if current_user.can_delete %}
-      <td class="cell">
-        <a href="{{ url_for('delete_file', filename=file.file_name) }}"
-          ><button>Delete</button></a
-        >
-      </td>
+      <div>
+        <td class="cell">
+          <span class="icons">
+            <a
+              class="button_icon"
+              href="{{ url_for('delete_file', filename=file.file_name) }}"
+              ><span class="material-icons">delete</span>
+              </span>
+        </td>
+      </div>
       {% endif %}
     </tr>
     {% endfor %}
