@@ -1,1 +1,1 @@
-FLASK_APP=file_manager.py
+FLASK_APP=main.py
