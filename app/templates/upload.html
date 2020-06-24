@@ -9,18 +9,20 @@
     <form action="" method="POST" novalidate enctype="multipart/form-data">
       {{ form.hidden_tag() }}
       <div class="field">
-        {{ form.description.label }}* {{ form.description(size=32) }} {% for
+        {{ form.description.label }} {{ form.description(size=32) }} {% for
         error in form.description.errors %}
         <span class="error">[{{ error }}]</span>
         {% endfor %}
       </div>
-      <div>
-        * {{ form.file(size=20) }} {% for error in form.file.errors %}
+      <div class="file-upload">
+        <span class="file-element">Upload a file*</span>
+        {{ form.file(size=20) }} {% for error in form.file.errors %}
         <span class="error">[{{ error }}]</span>
         {% endfor %}
       </div>
-      <div class="button">{{ form.submit() }}</div>
+      <div class="button disable">{{ form.submit() }}</div>
     </form>
   </div>
+  <script src="{{ url_for('static', filename='js/file-upload.js')}}"></script>
   {% endblock %}
 </div>
