@@ -4,5 +4,7 @@
     modalWindow.classList.add("close");
   }
   const closeButton = document.querySelector(".close.material-icons");
-  closeButton.addEventListener("click", closeWindow);
+  if (closeButton) {
+    closeButton.addEventListener("click", closeWindow);
+  }
 })();
