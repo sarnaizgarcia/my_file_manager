@@ -11,6 +11,23 @@
   align-items: flex-start;
 }
 
+.messages.close {
+  visibility: hidden;
+  animation: fadeOut 1s;
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
 .messages .header {
   display: flex;
   flex-direction: row;

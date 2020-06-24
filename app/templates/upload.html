@@ -9,13 +9,13 @@
     <form action="" method="POST" novalidate enctype="multipart/form-data">
       {{ form.hidden_tag() }}
       <div class="field">
-        {{ form.description.label }} {{ form.description(size=32) }} {% for
+        {{ form.description.label }}* {{ form.description(size=32) }} {% for
         error in form.description.errors %}
         <span class="error">[{{ error }}]</span>
         {% endfor %}
       </div>
       <div>
-        {{ form.file(size=20) }} {% for error in form.file.errors %}
+        * {{ form.file(size=20) }} {% for error in form.file.errors %}
         <span class="error">[{{ error }}]</span>
         {% endfor %}
       </div>
